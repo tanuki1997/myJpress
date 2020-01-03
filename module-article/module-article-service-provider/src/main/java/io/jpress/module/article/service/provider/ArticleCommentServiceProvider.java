@@ -212,5 +212,8 @@ public class ArticleCommentServiceProvider extends JbootServiceBase<ArticleComme
         return comment.getUserId().equals(userId);
     }
 
-
+    @Override
+    public Integer commentCount() {
+        return Db.queryInt("select count(1) from article_comment");
+    }
 }

@@ -131,5 +131,6 @@ public interface ArticleCommentService {
 
     public boolean isOwn(ArticleComment comment, long userId);
 
+    public Integer commentCount();
 
 }

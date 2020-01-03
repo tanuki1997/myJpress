@@ -433,4 +433,13 @@ public class ArticleServiceProvider extends JbootServiceBase<Article> implements
     }
 
 
+    @Override
+    public Long articleCountDirective() {
+        return Db.queryLong("select sum(view_count) from article ");
+    }
+
+    @Override
+    public Integer articleCount() {
+        return Db.queryInt("select count(1) from article where `status` ='normal'");
+    }
 }
