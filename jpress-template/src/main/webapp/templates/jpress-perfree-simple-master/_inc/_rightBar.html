@@ -5,16 +5,25 @@
             <h2 class="right-name-title">#(WEB_NAME ??)</h2>
             <div>
                 <script type="text/javascript" src="https://api.lwl12.com/hitokoto/v1?encode=js&charset=utf-8"></script>
-                    <span id="lwlhitokoto">
+                <span id="lwlhitokoto">
                         <script>lwlhitokoto()</script>
                     </span>
             </div>
+            <footer >
+                <ul>
+                    #articleCount()
+                    <li><strong>#(articleCount)</strong><span>文章</span></li>
+                    <li><strong>#(commentCount)</strong><span>评论</span></li>
+                    <li><strong>#(articleViewCount)</strong><span>文章浏览</span></li>
+                    #end
+                </ul>
+            </footer>
         </div>
     </div>
     <!-- 一言组件 -->
 
     <!-- 搜索start -->
-   <div class="layui-card search-box">
+    <div class="layui-card search-box">
         <div class="layui-card-header">
             <i class="fa fa-search"></i>
             <span style="margin-left: 3px;">搜索</span>
@@ -22,8 +31,10 @@
         <div class="layui-card-body search-body">
             <form class="layui-form" action="/article/search">
                 <div class="layui-form-item">
-                    <input type="text" name="keyword" required  lay-verify="required" placeholder="请输入关键字" autocomplete="off" class="layui-input search-input">
-                    <button class="layui-btn layui-btn-normal search-btn" type="submit"><i class="fa fa-search"></i></button>
+                    <input type="text" name="keyword" required lay-verify="required" placeholder="请输入关键字"
+                           autocomplete="off" class="layui-input search-input">
+                    <button class="layui-btn layui-btn-normal search-btn" type="submit"><i class="fa fa-search"></i>
+                    </button>
                 </div>
             </form>
         </div>
@@ -37,7 +48,8 @@
             <span style="margin-left: 3px;">音乐推荐</span>
         </div>
         <div class="layui-card-body music-body">
-            <meting-js server="#option('music_server' ??)" type="#option('music_type' ??)" id="#option('music_id' ??)" list-max-height="240px" list-folded="true"></meting-js>
+            <meting-js server="#option('music_server' ??)" type="#option('music_type' ??)" id="#option('music_id' ??)"
+                       list-max-height="240px" list-folded="true"></meting-js>
         </div>
     </div>
     #end
@@ -45,41 +57,45 @@
 
     <!-- 热门start -->
     #articles(orderBy="view_count DESC",count=5)
-        <div class="layui-card right-hot-article-box">
-            <div class="layui-card-header">
-                <i class="fa fa-fire"></i>
-                <span style="margin-left: 3px;">热门文章</span>
-            </div>
-            <div class="layui-card-body hot-article-body">
-                #for(article : articles)
-                    <a class="hot-article-box pjax" href="#(WEB_DOMAIN ??)#(article.url)">
-                        #if(for.odd)
-                            <img src="#(article.thumbnail ?? 'static/img/3.jpg')" width="20%" height="50px" class="hot-article-img"/>
-                        #else
-                            <img src="#(article.thumbnail ?? 'static/img/2.jpg')" width="20%" height="50px" class="hot-article-img"/>
-                        #end
-                        <span class="hot-article-title">#(article.title)</span><br>
-                        <span class="hot-article-msg"><i class="fa fa-clock-o"></i> #date(article.created, "yyyy-MM-dd")&nbsp;&nbsp;<i class="fa fa-eye"></i> #(article.view_count ??)</span>
-                    </a>
-                #end
-            </div>
+    <div class="layui-card right-hot-article-box">
+        <div class="layui-card-header">
+            <i class="fa fa-fire"></i>
+            <span style="margin-left: 3px;">热门文章</span>
         </div>
+        <div class="layui-card-body hot-article-body">
+            #for(article : articles)
+            <a class="hot-article-box pjax" href="#(WEB_DOMAIN ??)#(article.url)">
+                #if(for.odd)
+                <img src="#(article.thumbnail ?? 'static/img/3.jpg')" width="20%" height="50px"
+                     class="hot-article-img"/>
+                #else
+                <img src="#(article.thumbnail ?? 'static/img/2.jpg')" width="20%" height="50px"
+                     class="hot-article-img"/>
+                #end
+                <span class="hot-article-title">#(article.title)</span><br>
+                <span class="hot-article-msg"><i class="fa fa-clock-o"></i> #date(article.created, "yyyy-MM-dd")&nbsp;&nbsp;<i
+                        class="fa fa-eye"></i> #(article.view_count ??)</span>
+            </a>
+            #end
+        </div>
+    </div>
     #end
     <!-- 热门end -->
 
     <!-- 标签start -->
     #tags(orderBy="count DESC")
-        <div class="layui-card right-hot-tag">
-            <div class="layui-card-header">
-                <i class="fa fa-tags"></i>
-                <span style="margin-left: 3px;">热门标签</span>
-            </div>
-            <div class="layui-card-body tag-body">
-                #for(tag : tags)
-                    <a href="#(WEB_DOMAIN ??)#(tag.url)" class="layui-btn layui-btn-normal tag pjax" title="共#(tag.count ??)篇文章">#(tag.title)</a>
-                #end
-            </div>
+    <div class="layui-card right-hot-tag">
+        <div class="layui-card-header">
+            <i class="fa fa-tags"></i>
+            <span style="margin-left: 3px;">热门标签</span>
         </div>
+        <div class="layui-card-body tag-body">
+            #for(tag : tags)
+            <a href="#(WEB_DOMAIN ??)#(tag.url)" class="layui-btn layui-btn-normal tag pjax"
+               title="共#(tag.count ??)篇文章">#(tag.title)</a>
+            #end
+        </div>
+    </div>
     #end
     <!-- 标签end -->
 

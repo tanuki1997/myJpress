@@ -718,3 +718,25 @@ body::-webkit-scrollbar-track {
     padding: 5px 30px;
 }
 
+.page-title-body footer{
+    border-top: 1px solid #e5e5e5;
+}
+.page-title-body footer li {
+    display: inline-block;
+    width: 32.333%;
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px 0;
+}
+.page-title-body footer li strong{
+    display: block;
+    margin: 0 auto;
+    font-family: Georgia;
+    font-weight: 400;
+    font-size: 18px;
+    margin-top: -2px!important;
+}
+
